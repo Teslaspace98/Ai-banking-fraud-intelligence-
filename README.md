@@ -16,10 +16,12 @@ Python, NLP, FAISS, RAG, Streamlit, Machine Learning
 ```python
 import streamlit as st
 
+FRAUD_KEYWORDS = ["didn't make", "unauthorized", "fraud", "stolen"]
+
 def detect_intent(query):
     """Rule-based intent classifier - baseline before ML model."""
     query = query.lower()
-    if any(w in query for w in ["didn't make", "unauthorized", "fraud", "stolen"]):
+    if any(w in query for w in FRAUD_KEYWORDS):
         return "Fraud / Unauthorized Transaction", "High"
     elif any(w in query for w in ["loan", "emi", "application status"]):
         return "Loan Query", "Low"
